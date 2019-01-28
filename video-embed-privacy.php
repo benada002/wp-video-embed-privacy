@@ -89,7 +89,6 @@ function video_embed_privacy_translate($text, $url, $atts) {
 		$h = $heightMatches [1] * 1;
 	}
 	
-	$style = 'width: ' . $w . 'px; min-height: ' . $h . 'px;';
 	$class = 'video-wrapped';
 	$doReplacement = video_embed_privacy_option('replace_unknown') === 'true';
 
@@ -97,7 +96,7 @@ function video_embed_privacy_translate($text, $url, $atts) {
 
 	foreach ($supported as $id => $settings) {
 		if (preg_match($settings['videoIdMatch'], $text, $matches)) {
-			$playText = '<span>' . video_embed_privacy_option_ne($id . '_show') . '</span><div class="small"><span>' . video_embed_privacy_option_ne($id . '_hint') . '</span></div>';
+			$playText = '<div class="video-play-btn"></div><span>' . video_embed_privacy_option_ne($id . '_show') . '</span><div class="small"><span>' . video_embed_privacy_option_ne($id . '_hint') . '</span></div>';
 			$v = $matches [1];
 		
 			if (isset($settings['textFixer'])) {
@@ -106,7 +105,11 @@ function video_embed_privacy_translate($text, $url, $atts) {
 
 			$s = hash('sha256', video_embed_privacy_option('key') . $id . '/' . $v);
 			$preview = plugins_url("preview/$id/$v.jpg?s=$s", __FILE__);
+
+			$imageSize = getimagesize($preview);
+			
 			$class .= ' video-wrapped-video video-wrapped-' . $id;
+			$style = 'padding-bottom:' . $imageSize[1] / $imageSize[0] * 100 . '%; width: ' . $w . 'px;';
 			$style .= ' background-image: url(\'' . $preview . '\')';
 			$doReplacement = true;
 			break;

@@ -1,16 +1,18 @@
 .video-wrapped {
 	background: black no-repeat center center;
-	background-size: cover;
+	background-size: 100%;
 	color: white;
 	overflow: hidden;
 	position: relative;
 	cursor: pointer;
 	max-width: 100%;
 	margin: auto;
+	padding: 0;
 }
 .video-wrapped-clicked {
 	background: transparent;
 	background-image: none !important;
+	padding-bottom: 0px !important;
 }
 
 .video-wrapped .video-wrapped-nojs {
@@ -21,55 +23,69 @@
 .video-wrapped .video-wrapped-play {
 	text-align: center;
 	font-size: 30px;
-	padding-top: 20px;
-	position: relative;
+	position: absolute;
 	left: 0;
-	right: 0;
-	margin-top: 30%;
+	top: 0;
+	width: 100%;
 	cursor: pointer;
 	text-shadow: 1px 1px 3px black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100%;
+	box-sizing: border-box;
+}
+
+.video-wrapped .video-wrapped-play > * {
+	margin-bottom: 5px;
+	max-width: 100%;
 }
 
 .video-wrapped .video-wrapped-play span {
-	background: rgba(0, 0, 0, .3);
+	background: rgba(0, 0, 0, 0.3);
 	box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+	padding: 0.2em 0.3em;
 }
 
+.video-wrapped .video-wrapped-play span a {
+	color: #fff;
+	text-decoration-line: underline;
+}
 
-.video-wrapped.video-wrapped-video .video-wrapped-play:before {
-	content: '';
-	position: absolute;
+.video-wrapped.video-wrapped-video .video-play-btn {
+	content: "";
 	width: 80px;
 	height: 50px;
-	margin-left: -40px;
-	left: 50%;
-	top: -35px;
 	background: black;
 	border-radius: 5px;
-}
-.video-wrapped.video-wrapped-video:hover .video-wrapped-play:before {
-	box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+	position: relative;
+	margin-bottom: 10px;
 }
 
-.video-wrapped.video-wrapped-yt .video-wrapped-play:before {
+.video-wrapped.video-wrapped-video:hover .video-play-btn {
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.video-wrapped.video-wrapped-yt .video-play-btn {
 	background: rgb(185, 0, 0);
 }
 
-.video-wrapped.video-wrapped-vimeo .video-wrapped-play:before {
+.video-wrapped.video-wrapped-vimeo .video-play-btn {
 	background: #08c;
 }
 
-.video-wrapped.video-wrapped-video .video-wrapped-play:after {
-	content: '';
+.video-wrapped.video-wrapped-video .video-play-btn:after {
+	content: "";
 	border-style: solid;
 	border-width: 17px 0 17px 35px;
 	border-color: transparent transparent transparent white;
 	position: absolute;
 	width: 0;
 	height: 0;
-	margin-left: -15px;
+	transform: translate(-15px, -16px);
 	left: 50%;
-	top: -27px;
+	top: 50%;
 }
 
 .video-wrapped .video-wrapped-play .small {
