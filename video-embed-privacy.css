@@ -50,7 +50,7 @@
 
 .video-wrapped .video-wrapped-play span a {
 	color: #fff;
-	text-decoration-line: underline;
+	text-decoration: underline;
 }
 
 .video-wrapped.video-wrapped-video .video-play-btn {
